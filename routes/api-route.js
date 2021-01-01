@@ -12,8 +12,7 @@ router.post("/api/workouts", (req, res) => {
 });
 
 router.put("/api/workouts/:id", ({body,params}, res) => {
-    console.log(body);
-    console.log(params.id);
+
     Workout.findByIdAndUpdate(params.id, {
             $push: {
                 exercises: body
@@ -37,7 +36,6 @@ router.get("/api/workouts", (req, res) => {
 
 router.get("/api/workouts/range", (req, res) => {
     Workout.find({}).limit(7).then(dbWorkout => {
-        console.log(dbWorkout)
         res.json(dbWorkout);
     }).catch(err => {
         res.json(err);
